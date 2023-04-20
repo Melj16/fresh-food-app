@@ -3,10 +3,10 @@ import json
 from src import db
 
 
-olivia = Blueprint('olivia', __name__)
+matt = Blueprint('matt', __name__)
 
 # Get the inventory of a specific user
-@olivia.route('/inventory/<userID>', methods=['GET'])
+@matt.route('/inventory/<userID>', methods=['GET'])
 def get_inventory(userID):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT first_name, food_name, expiration_date FROM Users \
