@@ -64,5 +64,43 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "52410de2-0202-4d12-8ff7-928ce6124a1d",
+    "colId": "0981a911-c615-4728-b625-b380e585c851",
+    "containerId": "",
+    "name": "updateGroceryList",
+    "url": "localhost:8001/b/updateGroceryList",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2023-04-20T03:34:12.380Z",
+    "modified": "2023-04-20T03:35:31.555Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"list_id\": 1,\n  \"food_name\": \"apples\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8dee6f82-719d-491f-b740-20b38358f055",
+    "colId": "0981a911-c615-4728-b625-b380e585c851",
+    "containerId": "",
+    "name": "updateGroceryList2",
+    "url": "localhost:8001/b/updateGroceryList",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-04-20T03:36:14.336Z",
+    "modified": "2023-04-20T03:36:40.779Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"list_id\": 50,\n  \"food_name\": \"greek yogurt\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

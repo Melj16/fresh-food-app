@@ -23,7 +23,7 @@ def get_inventory(userID):
     the_response.mimetype = 'application/json'
     return the_response
 
-# create grocery lists for a specific user
+# create grocery lists 
 @betty.route('/createGroceryList', methods=['PUT'])
 def create_grocery_list():
     data = request.json
@@ -39,6 +39,26 @@ def create_grocery_list():
     query += list_name + '", '
     query += str(user_id) + ', '
     query += str(household_id) + ')'
+    current_app.logger.info(query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return 'Success'
+
+# update a grocery list by adding a food
+@betty.route('/updateGroceryList', methods=['POST'])
+def update_grocery_list():
+    data = request.json
+    current_app.logger.info(data)
+
+    list_id = data['list_id']
+    food_name = data['food_name']
+
+    query = 'insert into Food (list_id, food_name) values ('
+    query += str(list_id) + ', "'
+    query += food_name + '")'
     current_app.logger.info(query)
 
     cursor = db.get_db().cursor()
