@@ -31,8 +31,10 @@ def create_app():
 
     # Import the various routes
     from src.betty.betty import betty
+    from src.matt.matt import matt
 
     # Register the routes that we just imported so they can be properly handled
     app.register_blueprint(betty, url_prefix='/b')
+    app.register_blueprint(matt, url_prefix='/m')
 
     return app
