@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
@@ -22,3 +22,27 @@ def get_inventory(userID):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
+# create grocery lists for a specific user
+@betty.route('/createGroceryList', methods=['PUT'])
+def create_grocery_list():
+    data = request.json
+    current_app.logger.info(data)
+
+    list_id = data['list_id']
+    list_name = data['list_name']
+    user_id = data['user_id']
+    household_id = data['household_id']
+
+    query = 'insert into Grocery_List (list_id, list_name, user_id, household_id) values ('
+    query += str(list_id) + ', "'
+    query += list_name + '", '
+    query += str(user_id) + ', '
+    query += str(household_id) + ')'
+    current_app.logger.info(query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return 'Success'
