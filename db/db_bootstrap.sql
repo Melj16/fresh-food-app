@@ -306,7 +306,8 @@ CREATE TABLE IF NOT EXISTS Food (
     FOREIGN KEY (category_id)
         REFERENCES Category(category_id),
     FOREIGN KEY (list_id)
-        REFERENCES Grocery_List(list_id)
+        REFERENCES Grocery_List(list_id) 
+        ON DELETE CASCADE
 );
 
 -- -----------------------------
