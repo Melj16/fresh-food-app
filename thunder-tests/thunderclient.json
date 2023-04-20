@@ -214,5 +214,81 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "6b72cc87-2e2b-4441-8ff1-9edb7c274a64",
+    "colId": "0981a911-c615-4728-b625-b380e585c851",
+    "containerId": "",
+    "name": "TestCreateRecipe",
+    "url": "localhost:8001/b/createRecipe",
+    "method": "PUT",
+    "sortNum": 160000,
+    "created": "2023-04-20T23:02:39.102Z",
+    "modified": "2023-04-20T23:06:16.233Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"recipe_name\": \"pasta\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "47de204f-9fa4-4c2a-8921-0e804826faaa",
+    "colId": "0981a911-c615-4728-b625-b380e585c851",
+    "containerId": "",
+    "name": "TestCreateRecipe2",
+    "url": "localhost:8001/b/createRecipe",
+    "method": "PUT",
+    "sortNum": 170000,
+    "created": "2023-04-20T23:07:01.035Z",
+    "modified": "2023-04-20T23:07:48.367Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"recipe_name\" : \"pizza\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6c285c23-ff36-481f-8b02-8f2b2ec14469",
+    "colId": "0981a911-c615-4728-b625-b380e585c851",
+    "containerId": "",
+    "name": "TestUpdateRecipe",
+    "url": "localhost:8001/b/updateRecipe",
+    "method": "POST",
+    "sortNum": 180000,
+    "created": "2023-04-20T23:13:00.432Z",
+    "modified": "2023-04-20T23:35:04.100Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"recipe_id\" : 13,\n  \"food_id\" : 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "cdf3e6cb-06fe-4c74-a668-aff1a2770a6f",
+    "colId": "0981a911-c615-4728-b625-b380e585c851",
+    "containerId": "",
+    "name": "TestUpdateRecipe2",
+    "url": "localhost:8001/b/updateRecipe",
+    "method": "POST",
+    "sortNum": 190000,
+    "created": "2023-04-20T23:35:47.254Z",
+    "modified": "2023-04-20T23:36:14.649Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"recipe_id\" : 13,\n  \"food_id\" : 2\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

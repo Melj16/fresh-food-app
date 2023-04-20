@@ -126,3 +126,45 @@ def find_recipes_foods(recipeID):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
+# create recipes
+@betty.route('/createRecipe', methods=['PUT'])
+def create_recipe():
+    data = request.json
+    current_app.logger.info(data)
+
+    recipe_name = data['recipe_name']
+
+    query = 'insert into Recipes (recipe_name) values ("'
+    query += recipe_name + '")'
+    current_app.logger.info(query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return_message = 'Successfully created recipe {0}'.format(recipe_name)
+
+    return return_message
+
+# add a food to a specific recipe with recipeID
+@betty.route('/updateRecipe', methods=['POST'])
+def update_recipe():
+    data = request.json
+    current_app.logger.info(data)
+
+    recipe_id = data['recipe_id']
+    food_id = data['food_id']
+
+    query = 'insert into Recipe_Food (recipe_id, food_id) values ('
+    query += str(recipe_id) + ', '
+    query += str(food_id) + ')'
+    current_app.logger.info(query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return_message = 'Successfully added food id {0} to recipe id {1}'.format(food_id, recipe_id)
+
+    return return_message
