@@ -5,14 +5,13 @@ from src import db
 
 matt = Blueprint('matt', __name__)
 
-# Get the inventory of a specific user
-@matt.route('/inventory/<userID>', methods=['GET'])
+# Get the spending of a specific user
+@matt.route('/spending/<userID>', methods=['GET'])
 def get_inventory(userID):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT first_name, food_name, expiration_date FROM Users \
-        inner join User_Food UF on Users.user_id = UF.user_id \
-        inner join Food F on UF.food_id = F.food_id \
-        WHERE UF.user_id = {0};'.format(userID))
+    cursor.execute('SELECT food_name, cost * quantity FROM User_Food \
+                   INNER JOIN Food F on User_Food.food_id = F.food_id \
+                   WHERE user_id = 3;'.format(userID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -24,8 +23,8 @@ def get_inventory(userID):
     return the_response
 
 # Get the inventory of a specific user
-@matt.route('/inventory/<userID>', methods=['GET'])
-def get_inventory(userID):
+@matt.route('/expirationDate/<userID>', methods=['GET'])
+def get_expiration_date(userID):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT expiration_date FROM User_Food \
         inner join Food F on F.food_id = UF.food_id \
