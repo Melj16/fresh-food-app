@@ -7,7 +7,7 @@ matt = Blueprint('matt', __name__)
 
 # Get the spending of a specific user
 @matt.route('/spending/<userID>', methods=['GET'])
-def get_inventory(userID):
+def get_spending(userID):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT food_name, cost * quantity FROM User_Food \
                    INNER JOIN Food F on User_Food.food_id = F.food_id \
@@ -22,7 +22,7 @@ def get_inventory(userID):
     the_response.mimetype = 'application/json'
     return the_response
 
-# Get the inventory of a specific user
+# Get the Expiration Date of a specific user
 @matt.route('/expirationDate/<userID>', methods=['GET'])
 def get_expiration_date(userID):
     cursor = db.get_db().cursor()
@@ -110,11 +110,29 @@ def get_grocery_list(listID):
     return the_response
 
 # Get the price of a specific food
-@matt.route('/inventory/<userID>', methods=['GET'])
-def get_inventory(userID):
+@matt.route('/price/<userID>', methods=['GET'])
+def get_price(userID):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT cost FROM Food \
         inner join User_Food UF on UF.food_id = F.food_id \
+        WHERE UF.user_id = {0};'.format(userID))
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
+# Get the inventory of a specific user
+@matt.route('/inventory/<userID>', methods=['GET'])
+def get_inventory(userID):
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT first_name, food_name, expiration_date FROM Users \
+        inner join User_Food UF on Users.user_id = UF.user_id \
+        inner join Food F on UF.food_id = F.food_id \
         WHERE UF.user_id = {0};'.format(userID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
