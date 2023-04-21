@@ -11,7 +11,7 @@ def get_spending(userID):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT food_name, cost * quantity FROM User_Food \
                    INNER JOIN Food F on User_Food.food_id = F.food_id \
-                   WHERE user_id = 3;'.format(userID))
+                   WHERE user_id = {0};'.format(userID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -26,7 +26,7 @@ def get_spending(userID):
 @matt.route('/expirationDate/<userID>', methods=['GET'])
 def get_expiration_date(userID):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT expiration_date FROM User_Food \
+    cursor.execute('SELECT food_name, expiration_date FROM User_Food UF \
         inner join Food F on F.food_id = UF.food_id \
         WHERE UF.user_id = {0};'.format(userID))
     row_headers = [x[0] for x in cursor.description]
@@ -110,12 +110,12 @@ def get_grocery_list(listID):
     return the_response
 
 # Get the price of a specific food
-@matt.route('/price/<userID>', methods=['GET'])
-def get_price(userID):
+@matt.route('/price/<foodID>', methods=['GET'])
+def get_price(foodID):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT cost FROM Food \
+    cursor.execute('SELECT food_name, cost FROM Food F \
         inner join User_Food UF on UF.food_id = F.food_id \
-        WHERE UF.user_id = {0};'.format(userID))
+        WHERE UF.user_id = {0};'.format(foodID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
