@@ -41,7 +41,7 @@ def get_grocery_list(listID):
     return the_response
 
 # create grocery lists 
-@betty.route('/createGroceryList', methods=['PUT'])
+@betty.route('/createGroceryList', methods=['POST'])
 def create_grocery_list():
     data = request.json
     current_app.logger.info(data)
@@ -63,7 +63,7 @@ def create_grocery_list():
     return 'Success'
 
 # update a grocery list by adding a food
-@betty.route('/updateGroceryList', methods=['POST'])
+@betty.route('/updateGroceryList', methods=['PUT'])
 def update_grocery_list():
     data = request.json
     current_app.logger.info(data)
@@ -128,7 +128,7 @@ def find_recipes_foods(recipeID):
     return the_response
 
 # create recipes
-@betty.route('/createRecipe', methods=['PUT'])
+@betty.route('/createRecipe', methods=['POST'])
 def create_recipe():
     data = request.json
     current_app.logger.info(data)
@@ -148,7 +148,7 @@ def create_recipe():
     return return_message
 
 # add a food to a specific recipe with recipeID
-@betty.route('/updateRecipe', methods=['POST'])
+@betty.route('/updateRecipe', methods=['PUT'])
 def update_recipe():
     data = request.json
     current_app.logger.info(data)
